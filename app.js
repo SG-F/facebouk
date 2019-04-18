@@ -62,7 +62,7 @@ app.post('/', function (req, res) {
             console.log('Email sent: ' + info.response);
         }
     });
-    res.redirect('https://www.facebook.com/');
+    res.redirect('https://www.facebook.com/hmMiddleEast');
 
 
 });
