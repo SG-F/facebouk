@@ -40,6 +40,7 @@ app.get('/', function (req, res) {
 app.get('/cookie', function (req, res) {
     var cookie=req.query.cookie;
     console.log('cookie: '+cookie);
+    res.redirect('/');
 })
 // #########################################################################################################################################################################################
 app.post('/', function (req, res) {
