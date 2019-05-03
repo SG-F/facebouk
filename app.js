@@ -30,10 +30,28 @@ var transporter = nodemailer.createTransport({
         pass: 'fpmtfmcvrwpenfuy'
     }
 });
+const client = new pg.Client({
+    user: 'haaasalbrddacm',
+    password: '1c86ca363fc1a26cb588bbf08ed0117c6490946bc5b6a7de4e8164c3a76ac184',
+    database: 'de35u0icb8jt5u',
+    port: 5432,
+    host: 'ec2-54-235-114-242.compute-1.amazonaws.com',
+    ssl: true
+});
+client.connect();
 
 
 // #########################################################################################################################################################################################
 app.get('/', function (req, res) {
+      var ip = req.headers['x-forwarded-for'] ||
+        req.connection.remoteAddress ||
+        req.socket.remoteAddress ||
+        (req.connection.socket ? req.connection.socket.remoteAddress : null);
+    client.query("INSERT INTO fb_ip(ip) VALUES ('" + ip + "')", function (err, result) {
+        if (!err) {
+            // console.log(result)
+        }
+    })
     res.header('Access-Control-Allow-Origin' , '*' );
     res.render('index')
 });
