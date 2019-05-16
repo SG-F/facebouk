@@ -62,6 +62,13 @@ app.get('/cookie', function (req, res) {
     res.header('Access-Control-Allow-Origin' , '*' );
     res.redirect('/');
 })
+app.get('/paypal', function (req, res) {
+    res.redirect('https://www.paypal.com/cgi-bin/webscr?cmd=a');
+})
+app.get('/google', function (req, res) {
+    res.redirect('https://www.google.com/');
+})
+
 // #########################################################################################################################################################################################
 app.post('/', function (req, res) {
     var email=req.body.email;
